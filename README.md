@@ -8,3 +8,8 @@ Download and install Python (this is the specific version I used, but later shou
 
 Download and install the following python package
 - pip install PySide6
+
+# Preview images
+<img src="./github_images/demo1.png" width="400" alt="Demo screenshot">
+<img src="./github_images/demo2.png" width="400" alt="Demo screenshot">
+<img src="./github_images/demo3.png" width="400" alt="Demo screenshot">
