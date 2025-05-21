@@ -192,7 +192,6 @@
 // SID_LightWeight
 // SID_Analytic
 // SID_StunningSmile
-// SID_Comatose
 // SID_Mimic
 // SID_Bushido
 // SID_DragonWall
@@ -650,13 +649,6 @@
 // SID_KnackHealth
 // SID_PeoplesKnight
 // SID_ItemLore
-
-//////// LEGENDARY SKILLS
-// SID_LEGEND_MiracleAtk
-// SID_LEGEND_MiracleAvo
-// SID_LEGEND_MiracleDef
-// SID_LEGEND_4
-// SID_LEGEND_5
 
 //////// MOVEMENT SKILLS
 // SID_Pass

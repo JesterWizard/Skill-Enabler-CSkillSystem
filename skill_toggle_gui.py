@@ -135,7 +135,7 @@ class SkillGridTile(QWidget):
 class SkillToggleApp(QMainWindow):
     def __init__(self):
         super().__init__()
-        self.setWindowTitle('Skill Toggle Manager (Qt)')
+        self.setWindowTitle('Skill Enabler - C Skill System (Qt)')
         self.resize(1000, 720)
 
         # State
@@ -407,18 +407,40 @@ class SkillToggleApp(QMainWindow):
         self.skill_data = {}
         cur = None
         pat = re.compile(r'^(\s*)(//\s*)?(SID_[A-Za-z0-9_]+)(.*)$')
+        skip_category = False
+
         for i, raw in enumerate(lines):
             st = raw.strip()
+
+            # Detect category line
             if st.startswith('////////'):
-                cat = re.sub(r'(?i)skills', '', st.strip('/ ')).strip().title()
-                self.skill_data[cat] = []
-                cur = cat
+                cat_name = re.sub(r'(?i)skills', '', st.strip('/ ')).strip().title()
+
+                # Skip entire category if it looks like Combat Arts
+                if 'combat' in cat_name.lower():
+                    cur = None
+                    skip_category = True
+                    continue
+                else:
+                    self.skill_data[cat_name] = []
+                    cur = cat_name
+                    skip_category = False
                 continue
+
+            # Skip lines if in a disallowed category
+            if skip_category or not cur:
+                continue
+
+            # Match skill line
             m = pat.match(raw)
-            if m and cur:
+            if m:
                 _, cm, tok, _ = m.groups()
-                en = (cm is None)
                 nm = tok[len('SID_'):]
+                # Also filter any individual combat arts that slipped through
+                if nm.lower().startswith(('combatart_', 'ca_')):
+                    continue
+
+                en = (cm is None)
                 self.skill_data[cur].append((i, nm, en))
 
     def randomize_skills(self):
