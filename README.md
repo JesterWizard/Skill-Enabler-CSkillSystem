@@ -29,3 +29,8 @@ Download and install the following python package
 <img src="./github_images/demo1.png" width="400" alt="Demo screenshot">
 <img src="./github_images/demo2.png" width="400" alt="Demo screenshot">
 <img src="./github_images/demo3.png" width="400" alt="Demo screenshot">
+
+# Generate an EXE on your own
+- Install ``PyInstaller``
+- Run ``pyinstaller --onefile --windowed your_script.py``
+This will generate one file in your OS's architecture
